@@ -1,0 +1,32 @@
+{
+  "name": "offload",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Security-first, bounded source analysis for coding-agent subagents",
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "packageManager": "npm@11.17.0",
+  "license": "UNLICENSED",
+  "repository": { "type": "git", "url": "git+https://github.com/ichbtrv/offload.git" },
+  "homepage": "https://github.com/ichbtrv/offload#readme",
+  "bugs": { "url": "https://github.com/ichbtrv/offload/issues" },
+  "keywords": ["ai", "cli", "codex", "claude", "developer-tools", "typescript"],
+  "bin": { "offload": "dist/src/cli/main.js" },
+  "main": "./dist/src/index.js",
+  "types": "./dist/src/index.d.ts",
+  "exports": {
+    ".": { "types": "./dist/src/index.d.ts", "import": "./dist/src/index.js" }
+  },
+  "files": ["dist/src", "docs", "README.md"],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "check": "tsc -p tsconfig.json --noEmit",
+    "test": "npm run build && node --test dist/tests/*.test.js",
+    "test:coverage": "npm run build && node --test --experimental-test-coverage dist/tests/*.test.js",
+    "verify": "npm run check && npm test",
+    "prepack": "npm run build",
+    "demo": "npm run build && node dist/src/cli/main.js read --provider mock --root tests/fixtures/workspace --paths session.ts auth.ts --question 'Show the selected source evidence' --json"
+  },
+  "dependencies": { "zod": "4.6.5" },
+  "devDependencies": { "@types/node": "24.10.1", "typescript": "5.9.3" }
+}

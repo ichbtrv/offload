@@ -1,0 +1,5 @@
+.serena
+node_modules/
+dist/
+.offload-local/
+.agents/portfolio-brief.md
